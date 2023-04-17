@@ -30,6 +30,11 @@ namespace ThreadPoolExercises
              * Time consumed by ProcessWithThreadPoolMethod: 256228 ticks
              * Thread Execution
              * Time consumed by ProcessWithThreadMethod is : 6345555 ticks
+             * 
+             * Interesting notes:
+             * 
+             * 1. Process with threadpool was slower than process with threads in the first exercise, but faster in the second and third.
+             * 2. Threadpool only got 50.000 ticks slower from exercise 2.1 to 2.2. Meanwhile, process with threads became more than 10 times slower.
              */
 
             /* QUESTION:
