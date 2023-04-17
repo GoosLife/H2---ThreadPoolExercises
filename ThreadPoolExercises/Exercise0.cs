@@ -3,9 +3,13 @@
 */
 using System;
 using System.Threading;
+
+/// <summary>
+/// Class used to demonstrate the use and parallel execution of thread pools by writing to the console.
+/// </summary>
 class ThreadPoolDemo
 {
-    // Each method outputs 3 times
+    // Each call outputs 3 times
     public void task1(object obj)
     {
         for (int i = 0; i <= 2; i++)
@@ -13,6 +17,7 @@ class ThreadPoolDemo
             Console.WriteLine("Task 1 is being executed");
         }
     }
+
     public void task2(object obj)
     {
         for (int i = 0; i <= 2; i++)
@@ -21,16 +26,16 @@ class ThreadPoolDemo
         }
     }
 
+    // The main method from Exercise 0
     static void MainIgnore()
     {
         ThreadPoolDemo tpd = new ThreadPoolDemo();
 
-        for (int i = 0; i < 2; i++) // Create 4 tasks total, 2 at a time.
-                                    // These tasks are executed in an order determined by the CPU at runtime based on available resources.
+        // Create 2 threads in the thread pool and execute their tasks in parallel. 
+        for (int i = 0; i < 2; i++)
         {
-            ThreadPool.QueueUserWorkItem(new WaitCallback(tpd.task1)); // (new WaitCallback(tpd.task1)) and simply (tpd.task1) are equivalent
-                                                                       // and compile to the same byte code.
-
+            // (new WaitCallback(tpd.task1)) and simply (tpd.task1) are equivalent and compile to the same byte code.
+            ThreadPool.QueueUserWorkItem(new WaitCallback(tpd.task1));
             ThreadPool.QueueUserWorkItem(tpd.task2);
         }
 
